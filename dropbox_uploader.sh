@@ -572,7 +572,7 @@ function db_simple_upload_file
     check_http_response
 
     #Check
-    if grep -q "^HTTP/[12].* 200" "$RESPONSE_FILE"; then
+    if grep -q "^HTTP/[12].* 200 OK" "$RESPONSE_FILE"; then
         print "DONE\n"
     else
         print "FAILED\n"
@@ -641,7 +641,7 @@ function db_chunked_upload_file
         #check_http_response not needed, because we have to retry the request in case of error
 
         #Check
-        if grep -q "^HTTP/[12].* 200" "$RESPONSE_FILE"; then
+        if grep -q "^HTTP/[12].* 200 OK" "$RESPONSE_FILE"; then
             let OFFSET=$OFFSET+$CHUNK_REAL_SIZE
             UPLOAD_ERROR=0
             if [[ $VERBOSE != 1 ]]; then
@@ -675,7 +675,7 @@ function db_chunked_upload_file
         #check_http_response not needed, because we have to retry the request in case of error
 
         #Check
-        if grep -q "^HTTP/[12].* 200" "$RESPONSE_FILE"; then
+        if grep -q "^HTTP/[12].* 200 OK" "$RESPONSE_FILE"; then
             UPLOAD_ERROR=0
             break
         else
